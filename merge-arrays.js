@@ -19,16 +19,15 @@ function mergeArrays(a, b) {
     var merged = [];
     // Determine which array is bigger
     var biggerArr = a.length >= b.length ? a : b;
-    var smallerArr = a.length >= b.length ? b : a;
-    biggerArr.forEach((char, index) => {
+    for (var i = 0; i < biggerArr.length; i++) {
         // Push alternating chars/ints from each array (if undefined)
-        if (char !== undefined) {
-        merged.push(char);
+        if (a[i] !== undefined) {
+        merged.push(a[i]);
         }
-        if (smallerArr[index] !== undefined) {
-        merged.push(smallerArr[index]);
+        if (b[i] !== undefined) {
+        merged.push(b[i]);
         }
-    });
+    };
     return merged;
   }
 
