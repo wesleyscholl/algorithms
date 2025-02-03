@@ -17,34 +17,34 @@
 
 
 function zero(oper) {
-    return oper === undefined ? '0' : eval('0' + oper)
+    return oper === undefined ? '0' : Math.floor(eval('0' + oper))
 }
 function one(oper) {
-    return oper === undefined ? '1' : eval('1' + oper)
+    return oper === undefined ? '1' : Math.floor(eval('1' + oper))
 }
 function two(oper) {
-    return oper === undefined ? '2' : eval('2' + oper)
+    return oper === undefined ? '2' : Math.floor(eval('2' + oper))
 }
 function three(oper) {
-    return oper === undefined ? '3' : eval('3' + oper)
+    return oper === undefined ? '3' : Math.floor(eval('3' + oper))
 }
 function four(oper) {
-    return oper === undefined ? '4' : eval('4' + oper)
+    return oper === undefined ? '4' : Math.floor(eval('4' + oper))
 }
 function five(oper) {
-  return oper === undefined ? '5' : eval('5' + oper)
+  return oper === undefined ? '5' : Math.floor(eval('5' + oper))
 }
 function six(oper) {
-    return oper === undefined ? '6' : eval('6' + oper)
+    return oper === undefined ? '6' : Math.floor(eval('6' + oper))
 }
 function seven(oper) {
-    return oper === undefined ? '7' : eval('7' + oper)
+    return oper === undefined ? '7' : Math.floor(eval('7' + oper))
 }
 function eight(oper) {
-    return oper === undefined ? '8' : eval('8' + oper)
+    return oper === undefined ? '8' : Math.floor(eval('8' + oper))
 }
 function nine(oper) {
-    return oper === undefined ? '9' : eval('9' + oper)
+    return oper === undefined ? '9' : Math.floor(eval('9' + oper))
 }
 
 function plus(num) {
@@ -64,3 +64,5 @@ console.log(seven(times(five())))//, 35, "seven(times(five ()))");
 console.log(four(plus(nine())))//, 13, "four (plus(nine ()))");
 console.log(eight(minus(three())))//,  5, "eight(minus(three()))");
 console.log(six(dividedBy(two())))//,  3, "six(dividedBy(two()))");
+console.log(four(dividedBy(three())))//: expected 1.3333333333333333 to equal 1)
+console.log(nine(dividedBy(six())))//: expected 2 to equal 1)
