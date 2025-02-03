@@ -62,8 +62,7 @@ function sym(...args) {
     const symDiff = (setA, setB) => { // setA and setB arguments are Set objects
       return new Set( // Return a new Set object
         [...setA].filter(x => !setB.has(x)) // Filter out elements that are in setA but not in setB
-          .concat([...setB].filter(x => !setA.has(x))) // Concatenate elements that are in setB but not in setA
-      );
+          .concat([...setB].filter(x => !setA.has(x))).sort((a, b) => a - b)) // Concatenate and sort elements that are in setB but not in setA 
     };
   
     // Reduce the arrays into a single symmetric difference
@@ -72,13 +71,17 @@ function sym(...args) {
   }
 
 // Test cases
-console.log(sym([1, 2, 3], [5, 2, 1, 4])); // [3, 5, 4]
-console.log(sym([5, 7], [5, 7])); // []
-console.log(sym([1, 2, 3], [5, 2, 1, 4], [3, 4, 5])); 
-console.log(sym([1, 2, 3], [5, 2, 1, 4], [3, 4, 5], [1, 2, 3])); // [4, 5]
-console.log(sym([1, 2, 3], [5, 2, 1, 4], [3, 4, 5], [1, 2, 3], [6])); // [4, 5, 6]
-console.log(sym([1, 2, 3], [5, 2, 1, 4], [3, 4, 5], [1, 2, 3], [6], [6])); // [4, 5]
-console.log(sym([1, 2, 3], [5, 2, 1, 4], [3, 4, 5], [1, 2, 3], [6], [6], [7])); // [4, 5, 7]
-console.log(sym([1, 2, 3], [5, 2, 1, 4], [3, 4, 5], [1, 2, 3], [6], [6], [7], [8])); // [4, 5, 7, 8]
-console.log(sym([1, 2, 3], [5, 2, 1, 4], [3, 4, 5], [1, 2, 3], [6], [6], [7], [8], [9])); // [4, 5, 7, 8, 9]
-console.log(sym([1, 2, 3], [5, 2, 1, 4], [3, 4, 5], [1, 2, 3], [6], [6], [7], [8], [9], [10])); // [4, 5, 7, 8, 9, 10]
+console.log(sym([1, 2, 3], [5, 2, 1, 4])) // should return [3, 4, 5].
+console.log(sym([1, 2, 3], [5, 2, 1, 4])) // should contain only three elements.
+console.log(sym([1, 2, 3, 3], [5, 2, 1, 4])) // should return [3, 4, 5].
+console.log(sym([1, 2, 3, 3], [5, 2, 1, 4])) // should contain only three elements.
+console.log(sym([1, 2, 3], [5, 2, 1, 4, 5])) // should return [3, 4, 5].
+console.log(sym([1, 2, 3], [5, 2, 1, 4, 5])) // should contain only three elements.
+console.log(sym([1, 2, 5], [2, 3, 5], [3, 4, 5])) // should return [1, 4, 5].
+console.log(sym([1, 2, 5], [2, 3, 5], [3, 4, 5])) // should contain only three elements.
+console.log(sym([1, 1, 2, 5], [2, 2, 3, 5], [3, 4, 5, 5])) // should return [1, 4, 5].
+console.log(sym([1, 1, 2, 5], [2, 2, 3, 5], [3, 4, 5, 5])) // should contain only three elements.
+console.log(sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3])) // should return [2, 3, 4, 6, 7].
+console.log(sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3])) // should contain only five elements.
+console.log(sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3], [5, 3, 9, 8], [1])) // should return [1, 2, 4, 5, 6, 7, 8, 9].
+console.log(sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3], [5, 3, 9, 8], [1])) // should contain only eight elements.
